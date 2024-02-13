@@ -88,13 +88,13 @@ class Login
                         $_SESSION['user_login_status'] = 1;
 
                     } else {
-                        $this->errors[] = "Wrong password. Try again.";
+                        $this->errors[] = "密码错误,请重试";
                     }
                 } else {
-                    $this->errors[] = "This user does not exist.";
+                    $this->errors[] = "用户不存在";
                 }
             } else {
-                $this->errors[] = "Database connection problem.";
+                $this->errors[] = "数据库错误";
             }
         }
     }
