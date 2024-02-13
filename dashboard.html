@@ -1,0 +1,78 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <form id="ppiForm">
+            宽度（像素）: <input type="string" name="widthPixels"><br>
+            高度（像素）: <input type="string" name="heightPixels"><br>
+            屏幕尺寸（英寸）: <input type="string" name="sizeInches"><br>
+            备注: <input type="string" name="remark"><br>
+            <input type="submit" value="提交">
+        </form>
+        <div id="result"></div>
+
+        <div id="dataDisplay">
+    </center>
+    
+  
+
+    </div>
+
+<a href="index.php?logout">Logout</a>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("#ppiForm").on("submit", function(event){
+        event.preventDefault();
+        $.ajax({
+            url: "savePPI.php",
+            type: "post",
+            data: $(this).serialize(),
+            success: function(data) {
+                $("#result").html(data);
+            }
+        });
+    });
+});
+
+$(document).ready(function(){
+    loadData();
+});
+
+function loadData() {
+    $.ajax({
+        url: 'fetchAndShowData.php',
+        type: 'get',
+        success: function(data) {
+            $('#dataDisplay').html(data);
+        }
+    });
+}
+
+function deleteRecord(id) {
+    if(confirm("确定要删除这条记录吗？")) {
+        $.ajax({
+            url: 'delete.php',
+            type: 'post',
+            data: { 'id': id },
+            success: function(response) {
+                // 重新加载数据
+                location.reload();
+            }
+        });
+    }
+}
+
+</script>
+</body>
+</html>
+}
