@@ -101,16 +101,16 @@ class Registration
 
                     // if user has been added successfully
                     if ($query_new_user_insert) {
-                        $this->messages[] = "Your account has been created successfully. You can now log in.";
+                        $this->messages[] = "账户创建成功,现在可以登陆了.";
                     } else {
-                        $this->errors[] = "Sorry, your registration failed. Please go back and try again.";
+                        $this->errors[] = "失败,请重试!";
                     }
                 }
             } else {
-                $this->errors[] = "Sorry, no database connection.";
+                $this->errors[] = "没有数据库";
             }
         } else {
-            $this->errors[] = "An unknown error occurred.";
+            $this->errors[] = "未知错误";
         }
     }
 }
